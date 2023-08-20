@@ -209,6 +209,14 @@
                     </div>
 
                 </div>
+                        <br/>
+                <br/>
+                <div t-if="not is_html_empty(doc.narration)" name="comment">
+                    <span t-field="doc.narration"/>
+                </div>
+                <p t-if="not is_html_empty(doc.fiscal_position_id.note)" name="note">
+                    <span t-field="doc.fiscal_position_id.note"/>
+                </p>
             </div>
             <div class="oe_structure"/>
 
