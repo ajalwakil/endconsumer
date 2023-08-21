@@ -296,9 +296,6 @@
 
         <template id="einv_sa.inv_total">
             <div style="page-break-inside: avoid;">
-                  <br/>
-                <br/>
-                <br/>
                 <div class="row p-1 mt-1 bg-light">
                     <div class="col-6">
                         <Strong>Total Amount:</Strong>
