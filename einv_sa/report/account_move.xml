@@ -369,7 +369,7 @@
             <t t-debug=""></t>
             <t t-call="web.external_layout">
                 <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
-                <div style="margin-top:-20px" class="page">
+                <div style="margin-top:-10px" class="page">
 
                     <!-- Invoice fields-->
                     <t t-call="einv_sa.inv_header"/>
