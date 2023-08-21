@@ -296,6 +296,9 @@
 
         <template id="einv_sa.inv_total">
             <div style="page-break-inside: avoid;">
+                  <br/>
+                <br/>
+                <br/>
                 <div class="row p-1 mt-1 bg-light">
                     <div class="col-6">
                         <Strong>Total Amount:</Strong>
@@ -369,7 +372,7 @@
             <t t-debug=""></t>
             <t t-call="web.external_layout">
                 <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
-                <div style="margin-top:0px" class="page">
+                <div style="margin-top:-10px" class="page">
 
                     <!-- Invoice fields-->
                     <t t-call="einv_sa.inv_header"/>
