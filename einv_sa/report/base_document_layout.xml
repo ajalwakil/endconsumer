@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <!--         <span t-field="company.report_footer"/>-->
+        <template id="financial_layout_row">
+            <div class="row">
+                <div class="col-6">
+                    <div class="row  mx-1 border-bottom">
+                        <div class="col-3 px-0 text-left">CR No:</div>
+                        <div class="col-4 px-0 "><span t-field="company.company_registry"></span></div>
+                        <div class="col-5 px-0  text-right">:رقم سجل الشركة</div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="row  mx-1 border-bottom">
+                        <div class="col-4 px-0  text-left">Vat No:</div>
+                        <div class="col-4 px-0 "><span t-field="company.vat"></span></div>
+<!--                        <div class="col-4 px-0  text-right">:الرقم الضريبي</div>-->
+                    </div>
+                </div>
+            </div>
+
+
+        </template>
+
+        <template id="financial_layout_row_ul">
+            <ul class="list-inline mb4">
+                <!-- using the list-inline-item class from bootstrap causes weird behaviours in pdf report
+                     adding d-inline class fixes the problem-->
+                <li t-if="company.company_registry" class="list-inline-item d-inline mx-2">
+                    <span>CR No:</span>
+                    <span t-field="company.company_registry"></span>
+                    <span>:رقم سجل الشركة</span>
+                </li>
+
+                <li t-if="company.vat" class="list-inline-item d-inline">
+                    <span>Vat No:</span>
+                    <span t-field="company.vat"></span>
+<!--                    <span>:الرقم الضريبي</span>-->
+                </li>
+
+            </ul>
+
+        </template>
+
+        <template id="einv_external_layout_standard"
+                  inherit_id="web.external_layout_standard">
+            <xpath expr="//div[contains(@t-attf-class,'footer')]/div/ul" position="before">
+                <div t-call="einv_sa.financial_layout_row">
+                </div>
+
+            </xpath>
+            <!--            <xpath expr="//li[@t-if='company.vat']" position="replace">-->
+
+            <!--            </xpath>-->
+        </template>
+
+        <template id="einv_external_layout_boxed"
+                  inherit_id="web.external_layout_boxed">
+            <xpath expr="//div[contains(@t-attf-class,'header')]" position="replace">
+                    <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
+                        <div style="height:155px" class="o_boxed_header">
+                            <div class="row mb8">
+                                <div class="col-6">
+                                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" alt="Logo"/>
+                                </div>
+                                <div class="col-6 text-end mb4">
+                                    <div style="font-size:18px;font-weight:bold;line-height:25px" class="mt0 mb4">
+                                        <div>مكتب المستهلك األخير للخدمات التجارية</div>
+                                       <div> السجل التجاري:4030150530</div>
+                                       <div> مركزالشربتليشارع حائل</div>
+                                       <div> ص.ب.1757جدة21441</div>
+                                        <div> جدة–المملكة العربية السعودية</div>
+                                       <div> رقم الضريبة:300445179800003</div>
+                                    </div>
+<!--                                    <div class="mt0 h4" t-field="company.report_header"/>-->
+<!--                                    <div name="company_address" class="float-end mb4">-->
+<!--                                        <span t-if="company.company_details" t-field="company.company_details"></span>-->
+<!--                                    </div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </xpath>
+
+
+<!--            <xpath expr="//div[contains(@t-attf-class,'footer')]/div" position="before">-->
+<!--                <div t-call="einv_sa.financial_layout_row">-->
+<!--                </div>-->
+
+<!--            </xpath>-->
+            <xpath expr="//div[contains(@t-attf-class,'footer')]" position="replace">
+                <div t-attf-class="footer o_boxed_footer o_company_#{company.id}_layout">
+<!--                     <div class="row">-->
+<!--                         <div class="col-6">-->
+<!--                             <div class="row  mx-1 border-bottom">-->
+<!--                                 <div class="col-3 px-0 text-left">CR No:</div>-->
+<!--                                 <div class="col-4 px-0 ">-->
+<!--                                     <span t-field="company.company_registry"></span>-->
+<!--                                 </div>-->
+<!--                                 <div class="col-5 px-0  text-right">:رقم سجل الشركة</div>-->
+<!--                             </div>-->
+
+<!--                         </div>-->
+
+<!--                         <div class="col-6">-->
+<!--                             <div class="row  mx-1 border-bottom">-->
+<!--                                 <div class="col-4 px-0  text-left">Vat No:</div>-->
+<!--                                 <div class="col-4 px-0 ">-->
+<!--                                     <span t-field="company.vat"></span>-->
+<!--                                 </div>-->
+<!--                                 &lt;!&ndash;                        <div class="col-4 px-0  text-right">:الرقم الضريبي</div>&ndash;&gt;-->
+<!--                             </div>-->
+<!--                         </div>-->
+<!--                     </div>-->
+                    <div class="text-center">
+                        <div>
+                            <span>Telephone: +966 11 2034900</span>
+                            <span style="margin:0 10px">|</span>
+                            <span>http://www.endconsumer.net/</span>
+                        </div>
+                        <div t-if="report_type == 'pdf'">
+                            Page:
+                            <span class="page"/>
+                            /
+                            <span class="topage"/>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+            <!--            <xpath expr="//li[@t-if='company.vat']" position="replace">-->
+
+            <!--            </xpath>-->
+        </template>
+
+        <template id="einv_external_layout_bold"
+                  inherit_id="web.external_layout_bold">
+            <xpath expr="//div[contains(@t-attf-class,'footer')]/div" position="before">
+                <div t-call="einv_sa.financial_layout_row">
+                </div>
+            </xpath>
+
+        </template>
+
+        <template id="einv_external_layout_striped"
+                  inherit_id="web.external_layout_striped">
+            <xpath expr="//div[contains(@t-attf-class,'footer')]/div/ul/div" position="before">
+                <div t-call="einv_sa.financial_layout_row">
+                </div>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>
