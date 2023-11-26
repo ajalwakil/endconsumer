@@ -40,6 +40,25 @@ class AccountMove(models.Model):
     einv_sa_confirmation_datetime = fields.Datetime(string='Confirmation Date', readonly=True, copy=False)
 
     einv_sa_confirmed = fields.Boolean(compute='_compute_einv_sa_confirmation_datetime', store=True)
+    
+
+    def amount_word(self, amount):
+        language = self.partner_id.lang or 'ar'
+        language_id = self.env['res.lang'].search([('code', '=', 'ar_001')])
+        if language_id:
+            language = language_id.iso_code
+        amount_str = str('{:2f}'.format(amount))
+        amount_str_splt = amount_str.split('.')
+        before_point_value = amount_str_splt[0]
+        after_point_value = amount_str_splt[1][:2]
+        before_amount_words = num2words(int(before_point_value), lang=language)
+        after_amount_words = num2words(int(after_point_value), lang=language)
+        if after_amount_words == 'صفر':
+            amount = before_amount_words + ' ريال '
+        else:
+            amount = before_amount_words + ' ريال ' + ' و ' + after_amount_words + ' هللة '
+        return amount
+    
 
     def _compute_einv_sa_confirmation_datetime(self):
         for move in self:
