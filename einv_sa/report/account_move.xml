@@ -348,6 +348,13 @@
                                 <span t-field="doc.amount_total"></span>
                             </div>
                         </div>
+                         <div class="row border border-top-0">
+                            <div class="col-4">Total In Arabic</div>
+                            <div style="text-align:right" class="col-6 text-right"><span t-esc="doc.amount_word(doc.amount_total)"/></div>
+                            <div style="text-align:right" class="col-2 text-right">
+                                <span t-field="doc.amount_total"></span>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
