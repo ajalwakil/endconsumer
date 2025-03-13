@@ -249,7 +249,9 @@
             </div>
 </xpath>
           
-                                  <xpath expr="//span[@t-field='o.payment_reference']/../.." position="replace"/>  
+<xpath expr="//p[@name='payment_communication']" position="replace">
+                                                <p></p>
+                                                </xpath>
                                             
     </template>
 
