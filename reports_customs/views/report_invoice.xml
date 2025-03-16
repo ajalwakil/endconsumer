@@ -252,7 +252,16 @@
 <xpath expr="//p[@name='payment_communication']" position="replace">
                                                 <p></p>
                                                 </xpath>
+   <xpath expr="//p[@name='payment_term']" position="replace">
+                                                <p></p>
+                                                </xpath>
 
+                <xpath expr="//td[5]" position="replace">
+                 <td t-if="display_discount"
+                                        class="text-end">
+                                        <span class="text-nowrap" t-field="line.discount" t-options="{'widget': 'float', 'precision': 2}"/>
+                                    </td>
+                                    </xpath>
     </template>
 
 </odoo>
