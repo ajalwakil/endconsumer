@@ -6,7 +6,7 @@
     'name': 'Invoice custom ',
     'version': '16.0',
     'author': "Udata",
-    'depends': ['base','l10n_sa_edi' ],
+    'depends': ['base' ],
     'data': [
           
            'views/report_invoice.xml',
