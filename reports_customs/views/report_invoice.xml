@@ -256,12 +256,7 @@
                                                 <p></p>
                                                 </xpath>
 
-                <xpath expr="//td[6]" position="replace">
-                 <td t-if="display_discount"
-                                        class="text-end">
-                                        <span class="text-nowrap" t-field="line.discount" t-options="{'widget': 'float', 'precision': 2}"/>
-                                    </td>
-                                    </xpath>
+                
     </template>
 
 </odoo>
